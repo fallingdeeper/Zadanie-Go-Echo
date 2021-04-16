@@ -1,0 +1,8 @@
+--SQLite
+
+CREATE TABLE "table" (
+	"Id"	TEXT NOT NULL UNIQUE,
+	"Name"	TEXT NOT NULL,
+	"Surname"	REAL NOT NULL,
+	PRIMARY KEY("Id")
+);
