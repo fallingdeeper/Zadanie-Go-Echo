@@ -6,6 +6,7 @@ import (
     "fmt"
     "sync"
     "github.com/mattn/go-sqlite3"
+    "./db/table.db"
 )
 
 var lock = &sync.Mutex{}
@@ -31,24 +32,24 @@ func getInstance() *single {
 }
  
 func  Open_s() {
-    db, er :=sql.Open("sqlite3", "table.db")
+    singleton, er :=sql.Open("sqlite3", "./db/table.db")
     if er !=nil {
 	    fmt.Fatal("Connection failed")
     }
-    st.db = db
+    st.singleton = singleton
     fmt.Println("Connection opened")
 }
 
 func Close_s(){
-    if st.db ==nil{
+    if st.singleton ==nil{
 	fmt.Fatal("DB was not opened before")
      }
-	st.db.Close()
+	st.singleton.Close()
 	fmt.Println("Connection closed")
 }
 
 func  Query_s(db *sql.DB, Id strinf, Name string, Surname string) {
-    if st.db == nil {
+    if st.singleton == nil {
 	log.Fatal ("Open connection before start")
 	}
 	a , er := st.db.Query(query)
