@@ -21,7 +21,7 @@ func main() {
     singl.CloseS()
 
 
-    return  c.JSON(table)
+    return  c.JSON(http.StatusOK, table)
 
    })
    e.Logger.Fatal(e.Start(":1323"))
