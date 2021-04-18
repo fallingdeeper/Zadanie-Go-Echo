@@ -2,29 +2,30 @@ package main
 
 import (
     "net/http"
-    singl "echoapp/singleton"
+    "echoapp/singleton"
     "github.com/labstack/echo/v4"
-    "fmt"
-    table "echoapp/model"
+    "echoapp/model"
 ) 
 
 func main() {
     e := echo.New()
-    e.POST("/table", func(c echo.Context) error {    
+    e.GET("/table", func(c echo.Context) error {    
 
-    var object =  singl.getInstance()
+    var object =  singleton.GetInstance()
     object.OpenS()
 
-    var query = fmt.Sprintf( "INSERT INTO table (Id, Name, Surname) values ('%s', '%s', '%s')", table.Id, table.Name, table.Surname)
-    
+    var table = model.Table{
+	    Id:	"1",
+	    Name:	"Olga",
+	    Surname:	"Petryk",
+    }
 
-    singl.CloseS()
+    object.CloseS()
 
 
     return  c.JSON(http.StatusOK, table)
 
    })
    e.Logger.Fatal(e.Start(":1323"))
-
 
 }

@@ -6,7 +6,7 @@ import (
     "fmt"
     "sync"
     "log"
-
+    _ "github.com/mattn/go-sqlite3"
 )
 
 var lock = &sync.Mutex{}
@@ -17,7 +17,7 @@ type singleton struct {
 
 var singleInstance *singleton
 
-func getInstance() *singleton {
+func GetInstance() *singleton {
     if singleInstance == nil {
         lock.Lock()
         defer lock.Unlock()
@@ -36,7 +36,7 @@ func getInstance() *singleton {
 }
  
 func (st *singleton)  OpenS() {
-    single, er :=sql.Open("sqlite3", "./db/table.db")
+    single, er :=sql.Open("sqlite3", "./table.db")
     if er !=nil {
 	    log.Fatal("Connection failed")
     }
