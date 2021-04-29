@@ -1,0 +1,7 @@
+name: GitHub Actions Go
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: go run main.go
